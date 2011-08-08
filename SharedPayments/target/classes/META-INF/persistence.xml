@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd"
+             version="1.0">
+
+	<persistence-unit name="application" transaction-type="RESOURCE_LOCAL">
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>  
+        <class>com.xandrev.sharedpayments.Item</class>
+        <class>com.xandrev.sharedpayments.Order</class>
+        <class>com.xandrev.sharedpayments.model.Bill</class>
+        <class>com.xandrev.sharedpayments.model.Category</class>
+        <class>com.xandrev.sharedpayments.model.Group</class>
+        <class>com.xandrev.sharedpayments.model.Message</class>
+        <class>com.xandrev.sharedpayments.model.Payment</class>
+        <class>com.xandrev.sharedpayments.model.User</class>
+        <exclude-unlisted-classes>true</exclude-unlisted-classes>
+        <properties>
+                <property name="hibernate.connection.driver_class"
+                        value="com.mysql.jdbc.Driver" />
+                <property name="hibernate.connection.url"
+                        value="jdbc:mysql://localhost:3306/sharedpayments" />
+                <property name="hibernate.connection.username" value="root" />
+                <property name="hibernate.connection.password" value="goleador" />
+                <property name="show_sql" value="true" />
+        </properties>
+		
+
+	</persistence-unit>
+
+</persistence>
+
