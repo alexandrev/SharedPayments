@@ -1,0 +1,29 @@
+#loginBox{
+	width: 200px;
+	height: 140px;
+	top: 40%;
+	left: 40%;
+	border: 1px dashed;
+	background: aqua;
+	position:absolute;
+}
+
+label{
+	margin-left: 20px;
+	padding: 20px;
+	font-family:sans-serif;
+	font-size:10px;
+	font-weight: bold;
+}
+
+.button{
+	margin-top: 10px;
+	width: 150px;
+	font-family:sans-serif;
+	font-size:10px;
+	font-weight: bold;
+}
+
+body{
+	background: blue;
+}

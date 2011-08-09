@@ -12,14 +12,17 @@ import com.xandrev.sharedpayments.model.actions.UserActions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * Handles requests for the application home page.
  */
+@ContextConfiguration
 @Controller
 public class HomeController {
 	
@@ -46,6 +49,7 @@ public class HomeController {
 	 * Simply selects the home view to render by returning its name.
 	 */
 	@RequestMapping(value = "/user.login", method = RequestMethod.GET)
+	@ResponseBody
 	public String loginUser(@RequestParam String userName, @RequestParam String password,HttpSession session) {
 		logger.info("Request to log in a new user with following data: "+ userName);
 		if(userName != null && !userName.equals("")){
@@ -53,8 +57,8 @@ public class HomeController {
 				UserActions.loginUser(userName, password,session);
 			}
 		}
-		
-		return "home";
+		logger.info("Handled request to log in a new user with following data: "+ userName);
+		return "{\"login\": \"ok\"}";
 	}
 	
 	@RequestMapping(value = "/user.add", method = RequestMethod.GET)
