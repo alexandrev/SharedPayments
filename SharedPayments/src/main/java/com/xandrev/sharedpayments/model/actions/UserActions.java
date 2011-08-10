@@ -4,16 +4,20 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.xandrev.sharedpayments.model.User;
 import com.xandrev.sharedpayments.model.utils.Utilies;
 
+@ContextConfiguration
 public class UserActions {
 
-	@PersistenceContext
-	private static EntityManager entityManager;
+	@PersistenceContext(unitName="application")
+	private EntityManager entityManager;
 	
-
-	public static boolean addUser(String userName, String firstName,
+	@Transactional
+	public boolean addUser(String userName, String firstName,
 			String lastName, String mailAddress, String password) {
 		try {
 			User user = new User();
@@ -26,12 +30,12 @@ public class UserActions {
 			entityManager.flush();
 			return true;
 		} catch (Exception ex) {
-
+			ex.printStackTrace();
 		}
 		return false;
 	}
 	
-	public static User loginUser(String userName, String password, HttpSession session) {
+	public User loginUser(String userName, String password, HttpSession session) {
 		try {
 			User user = new User();
 			user.setUserName(userName);
@@ -50,7 +54,7 @@ public class UserActions {
 		return null;
 	}
 	
-	public static boolean disabledUser(String userName,HttpSession session) {
+	public boolean disabledUser(String userName,HttpSession session) {
 		try {
 			User user = new User();
 			user.setUserName(userName);

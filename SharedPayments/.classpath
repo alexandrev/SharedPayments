@@ -14,7 +14,7 @@
 			<attribute name="owner.project.facets" value="jst.web"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="con" path="org.eclipse.datatools.connectivity.jdt.DRIVERLIBRARY/MySQL JDBC Driver"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="C:/Users/Alexandre/Downloads/mysql-connector-java-5.1.17/mysql-connector-java-5.1.17/mysql-connector-java-5.1.17-bin.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

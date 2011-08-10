@@ -16,6 +16,10 @@ label{
 	font-weight: bold;
 }
 
+#addUser{
+	display: none;
+}
+
 .button{
 	margin-top: 10px;
 	width: 150px;

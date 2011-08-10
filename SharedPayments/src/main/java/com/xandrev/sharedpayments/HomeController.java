@@ -51,10 +51,11 @@ public class HomeController {
 	@RequestMapping(value = "/user.login", method = RequestMethod.GET)
 	@ResponseBody
 	public String loginUser(@RequestParam String userName, @RequestParam String password,HttpSession session) {
+		UserActions actions = new UserActions();
 		logger.info("Request to log in a new user with following data: "+ userName);
 		if(userName != null && !userName.equals("")){
 			if(password != null && !password.equals("")){
-				UserActions.loginUser(userName, password,session);
+				actions.loginUser(userName, password,session);
 			}
 		}
 		logger.info("Handled request to log in a new user with following data: "+ userName);
@@ -62,18 +63,22 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "/user.add", method = RequestMethod.GET)
+	@ResponseBody
 	public String addUser(@RequestParam String userName, @RequestParam String firstName, @RequestParam String lastName, @RequestParam String mailAddress, @RequestParam String password) {
 		String response = "";
-		logger.debug("Request to add a new user with following data: "+userName+" "+ firstName +" "+ lastName +" "+ mailAddress+" "+password);
+		UserActions actions = new UserActions();
+		logger.info("Request to add a new user with following data: "+userName+" "+ firstName +" "+ lastName +" "+ mailAddress+" "+password);
 		if(userName != null && !userName.equals("")){
 			if(firstName != null && !firstName.equals("")){
 				if(lastName != null && !lastName.equals("")){
 					if(mailAddress != null && !mailAddress.equals("")){
 						if(password != null && !password.equals("")){
-							if(UserActions.addUser(userName, firstName, lastName, mailAddress, password)){
+							if(actions.addUser(userName, firstName, lastName, mailAddress, password)){
 								logger.info("New user added: "+userName);
+								response = "{add: ok}";
 							}else{
 								logger.error("Error adding user: "+userName);
+								response = "{error: Error adding user}";
 							}
 						}
 					}
