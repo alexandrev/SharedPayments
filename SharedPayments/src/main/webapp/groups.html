@@ -2,10 +2,44 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Shared Payments 1.0</title>
+<link rel="stylesheet" type="text/css" href="css/main.css" />
+<link type="text/css" href="css/smoothness/jquery-ui-1.8.15.custom.css"
+	rel="stylesheet" />
+<script type="text/javascript" src="js/jquery-1.6.2.js"></script>
+<script type="text/javascript" src="js/jquery-ui-1.8.15.custom.min.js"></script>
+<script type="text/javascript" src="js/utils.js"></script>
+<script>
+	$(function() {
+		$("#accordion").accordion();
+	});
+</script>
 </head>
-<body onLoad="getGroup()">
-
+<body onLoad="getGroups();">
+	<div id="header"></div>
+	<div id="content">
+		<div id="sidebar">
+			<div id="accordion">
+				<h3>
+					<a href="#">First header</a>
+				</h3>
+				<div>First content</div>
+				<h3>
+					<a href="#">Second header</a>
+				</h3>
+				<div>Second content</div>
+			</div>
+		</div>
+		<div id="central_content">
+			<h3>Últimas novedades</h3>
+			<ul>
+				<li>Novedad 1</li>
+				<li>Novedad 2</li>
+				<li>Novedad 3</li>
+				<li>Novedad 4</li>
+			</ul>
+		</div>
+	</div>
 </body>
 
 </html>

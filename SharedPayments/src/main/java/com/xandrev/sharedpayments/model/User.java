@@ -1,5 +1,6 @@
 package com.xandrev.sharedpayments.model;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -14,7 +15,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="USER")
+@Table(name="USER_DEF")
 public class User {
 	@Id
 	private String userName;
@@ -24,14 +25,18 @@ public class User {
 	private String password;
 	
 	@ManyToMany
-    @JoinTable(name="USER_GROUP",
+    @JoinTable(name="group_def_user_def",
                 joinColumns=
-                     @JoinColumn(name="USER_ID"),
+                     @JoinColumn(name="members_username"),
                 inverseJoinColumns=
-                     @JoinColumn(name="GROUP_ID")
+                     @JoinColumn(name="group_def_id")
     )
 	private Collection<Group> groupList;
 
+	public User(){
+		groupList = new ArrayList<Group>();
+	}
+	
 	public String getUserName() {
 		return userName;
 	}

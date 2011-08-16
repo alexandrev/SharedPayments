@@ -3,14 +3,22 @@ package com.xandrev.sharedpayments.model;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="PAYMENT")
+@SequenceGenerator(
+	    name="SEQ_STORE_3",
+	    sequenceName="sequencepayment",
+	    initialValue= 100 ,
+	    allocationSize=20)
 public class Payment {
-	@Id
+	@Id @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="SEQ_STORE_3")
 	private Long id;
 	@ManyToOne
 	private User fromUser;
@@ -19,6 +27,10 @@ public class Payment {
 	private String issue;
 	private Date date;
 	private Double quantity;
+	
+	public Payment(){
+		
+	}
 	
 	public Payment(User user){
 		fromUser = user;

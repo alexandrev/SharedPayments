@@ -3,8 +3,8 @@
 	<wb-module deploy-name="SharedPayments">
 		<wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
 		<wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
-        <wb-resource deploy-path="/" source-path="/src/main/webapp"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/test/resources/com/com.xandrev.sharedpayments"/>
+        <wb-resource deploy-path="/" source-path="/src/main/webapp"/>
 		<property name="java-output-path" value="target/classes"/>
         <property name="context-root" value="sharedpayments"/>
 	</wb-module>

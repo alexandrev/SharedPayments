@@ -7,12 +7,17 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
 
 
 @Entity
+@SequenceGenerator(
+	    name="SEQ_STORE_2",
+	    sequenceName="sequencebill",
+	    initialValue= 100 ,
+	    allocationSize=20)
 public class Bill {
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Id @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="SEQ_STORE_2")
 	private Long id;
 	private String concept;
 	@OneToOne
@@ -23,6 +28,10 @@ public class Bill {
 	private Date date;
 	
 	private Double quantity;
+	
+	public Bill(){
+		
+	}
 	
 	public Bill(User user){
 		payer = user;

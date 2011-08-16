@@ -71,3 +71,14 @@ function login(){
 		dataType:'json'
 			});
 }
+
+function getGroups(){
+	
+}
+
+jQuery(document).ready(function(){
+	$('.accordion .head').click(function() {
+		$(this).next().toggle('slow');
+		return false;
+	}).next().hide();
+});

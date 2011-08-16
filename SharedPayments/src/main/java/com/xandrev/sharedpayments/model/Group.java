@@ -6,6 +6,7 @@ import java.util.Hashtable;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,15 +15,22 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.TableGenerator;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 @Entity
 @Table(name="GROUP_DEF")
+@SequenceGenerator(
+	    name="SEQ_STORE",
+	    sequenceName="sequencevehiculo",
+	    initialValue= 100 ,
+	    allocationSize=20)
 public class Group {
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Id @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="SEQ_STORE")
+	
 	private Long id;
 	private String name;
 	private String description;
@@ -45,6 +53,15 @@ public class Group {
 	private Collection<Message> messages;
 	
 	private Hashtable<User,Double> debts;
+	
+	public Group(){
+		members = new ArrayList<User>();
+		bills = new ArrayList<Bill>();
+		payments = new ArrayList<Payment>();
+		messages = new ArrayList<Message>();
+		debts = new Hashtable<User,Double>();
+		cateogries = new ArrayList<Category>();
+	}
 	
 	public Long getId() {
 		return id;
@@ -170,6 +187,7 @@ public class Group {
 		
 	}
 	private void recaculateDebts(Bill bill) {
+		if(bill != null){
 		if(debts == null){
 			debts = new Hashtable<User, Double>();
 			for(User user : members){
@@ -181,11 +199,15 @@ public class Group {
 			double tmpQuantity =  bill.getQuantity() / members.size();
 			if(user.getUserName().equals(payer.getUserName())){
 				Double tmpDouble = debts.get(user);
-				debts.put(user,tmpDouble - tmpQuantity);
+				if(tmpDouble != null){
+					debts.put(user,tmpDouble - tmpQuantity);
+				}
+				
 			}else{
 				Double tmpDouble = debts.get(user);
 				debts.put(user,tmpDouble + tmpQuantity);
 			}
+		}
 		}
 		
 	}

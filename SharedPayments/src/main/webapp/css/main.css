@@ -31,3 +31,9 @@ label{
 body{
 	background: blue;
 }
+
+#sidebar{
+	width: 200px;
+	float:left;
+	padding:20px;
+}
